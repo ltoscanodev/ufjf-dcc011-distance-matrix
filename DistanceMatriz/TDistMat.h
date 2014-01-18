@@ -14,10 +14,10 @@ class TDistMat
         int convertIndex(int i, int j); // Se i e j forem válidos, converte o i e j para o índice correto no vetor
     public:
         TDistMat(int ordem); // Construtor do TAD
-        ~TDistMat(); // Destrutor do TAD
         float getDist(int i, int j); // Consulta a distância na posição i e j
         void setDist(int i, int j, float dist); // Atribui uma distância à posição i e j
         void print(); // Imprime a matriz
+        ~TDistMat(); // Destrutor do TAD
 };
 
 #endif // TDISTMAT_H_INCLUDED

@@ -1,3 +1,5 @@
+#include "TDistMat.h"
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -9,7 +11,7 @@ using namespace std;
     Descrição: Método que lê o arquivo que contêm a matriz
     Autor: Luis Augusto Toscano
 */
-void readMatriz(string fileName)
+TDistMat* readMatriz(string fileName)
 {
     ifstream streamFile;
     streamFile.open(fileName.c_str());
@@ -20,33 +22,44 @@ void readMatriz(string fileName)
     {
         int i = 1;
         int j = 0;
+
         string line;
         getline(streamFile, line);
-        cout << line << endl;
+        istringstream streamLine(line);
+
+        float ordem;
+        streamLine >> ordem;
+
+        TDistMat *distMat = new TDistMat(ordem);
 
         while (getline(streamFile, line))
         {
+            float dist;
             istringstream streamLine(line);
 
-            float val;
-
-            while(streamLine>> val)
+            while(streamLine >> dist)
             {
-                cout << "[" << i << j << "]:" << val << " ";
+                distMat->setDist(i, j, dist);
                 j++;
             }
 
-            cout << endl;
             j = 0;
             i++;
         }
+
+        return distMat;
     }
 
     streamFile.close();
+    return NULL;
 }
 
 int main()
 {
-    readMatriz("Matrizes/matriz.txt");
+    TDistMat *distMat = readMatriz("Matrizes/matriz.txt");
+
+    if(distMat != NULL)
+        distMat->print();
+
     return 0;
 }

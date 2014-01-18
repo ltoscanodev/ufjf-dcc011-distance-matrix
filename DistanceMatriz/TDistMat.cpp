@@ -1,8 +1,7 @@
 #include "TDistMat.h"
+#include <iostream>
 
-/*
-    Descrição: Implementação do TAD TDistMat
-*/
+using namespace std;
 
 /*
     Descrição: Implementação do construtor do TAD, recebe como parâmetro a ordem da matriz e aloca
@@ -26,7 +25,7 @@ TDistMat::~TDistMat()
 
 /*
     Descrição: Implementação do método isValidIndex do TAD
-    Autor:
+    Autor: Luis Augusto Toscano
 */
 bool TDistMat::isValidIndex(int i, int j)
 {
@@ -38,36 +37,71 @@ bool TDistMat::isValidIndex(int i, int j)
 
 /*
     Descrição: Implementação do método convertIndex do TAD
-    Autor:
+    Autor: Luis Augusto Toscano
 */
 int TDistMat::convertIndex(int i, int j)
 {
-    //TODO
+    if(isValidIndex(i, j))
+        return (i + n * j);
+
+    return -1;
 }
 
 /*
     Descrição: Implementação do método getDist do TAD
-    Autor:
+    Autor: Luis Augusto Toscano
 */
 float TDistMat::getDist(int i, int j)
 {
-    //TODO
+    int index = convertIndex(i, j);
+
+    if(index != -1)
+    {
+        if(i == j)
+            return 0;
+        else if((i != j) && (i > j))
+            return mat[index];
+        else if(j > i)
+        {
+            index = convertIndex(j, i);
+            return mat[index];
+        }
+    }
+    else
+        cout << "Índice inválido";
+
+    return -1;
 }
 
 /*
     Descrição: Implementação do método setDist do TAD
-    Autor:
+    Autor: Luis Augusto Toscano
 */
 void TDistMat::setDist(int i, int j, float dist)
 {
-    //TODO
+    int index = convertIndex(i, j);
+
+    if((i != j) && (i > j))
+    {
+        if(index != -1)
+            mat[index] = dist;
+        else
+            cout << "Índice inválido";
+    }
 }
 
 /*
     Descrição: Implementação do método print do TAD
-    Autor:
+    Autor: Luis Augusto Toscano
 */
 void TDistMat::print()
 {
-    //TODO
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            cout << "[" << i << "][" << j << "]: " << getDist(i, j) << endl;
+        }
+    }
 }
+
