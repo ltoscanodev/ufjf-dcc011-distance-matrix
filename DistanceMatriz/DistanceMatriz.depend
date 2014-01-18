@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1390051701 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\main.cpp
+	<iostream>
+	<fstream>
+	<sstream>
+	<string>
+
