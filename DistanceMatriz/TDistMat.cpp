@@ -55,20 +55,17 @@ float TDistMat::getDist(int i, int j)
 {
     int index = convertIndex(i, j);
 
-    if(index != -1)
+    if((index != -1) && (i == j))
+        return 0;
+    else if((index != -1) && (i != j))
     {
-        if(i == j)
-            return 0;
-        else if((i != j) && (i > j))
-            return mat[index];
-        else if(j > i)
-        {
+        if(j > i)
             index = convertIndex(j, i);
-            return mat[index];
-        }
+
+         return mat[index];
     }
     else
-        cout << "Índice inválido";
+        cout << "Índice inválido" << endl;
 
     return -1;
 }
@@ -81,13 +78,18 @@ void TDistMat::setDist(int i, int j, float dist)
 {
     int index = convertIndex(i, j);
 
-    if((i != j) && (i > j))
+    if(index != -1)
     {
-        if(index != -1)
+        if(i != j)
+        {
+            if((i != j) && (i < j))
+                index = convertIndex(j, i);
+
             mat[index] = dist;
-        else
-            cout << "Índice inválido";
+        }
     }
+    else
+        cout << "Índice inválido" << endl;
 }
 
 /*

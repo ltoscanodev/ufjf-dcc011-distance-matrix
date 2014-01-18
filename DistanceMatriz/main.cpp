@@ -47,10 +47,10 @@ TDistMat* readMatriz(string fileName)
             i++;
         }
 
+        streamFile.close();
         return distMat;
     }
 
-    streamFile.close();
     return NULL;
 }
 
