@@ -32,12 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="TDistMat.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="TDistMat.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="TDistMat.cpp" />
+		<Unit filename="TDistMat.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
