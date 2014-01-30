@@ -1,6 +1,7 @@
 #ifndef TDISTMAT2_H
 #define TDISTMAT2_H
 
+#include "TList.h"
 
 class TDistMat2
 {

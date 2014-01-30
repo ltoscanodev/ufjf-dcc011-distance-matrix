@@ -1,16 +1,34 @@
 # depslib dependency file v1.0
-1390061440 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\main.cpp
+1391093305 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\main.cpp
 	"TDistMat.h"
 	<iostream>
 	<fstream>
 	<sstream>
 	<string>
 
-1390061330 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.h
+1391092327 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.h
 
 1390061130 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.cpp
 	"TDistMat.h"
 	<iostream>
 
 1390058489 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.h
+
+1391092284 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat2.cpp
+	"TDistMat2.h"
+
+1391092487 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat2.h
+	"TList.h"
+
+1391093024 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tlist.h
+	"TNo.h"
+
+1390152958 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tno.h
+
+1391093054 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tlist.cpp
+	<iostream>
+	"TList.h"
+
+1391093091 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tno.cpp
+	"TNo.h"
 

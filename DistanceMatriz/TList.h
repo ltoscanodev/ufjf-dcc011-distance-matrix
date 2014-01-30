@@ -1,6 +1,8 @@
 #ifndef TLIST_H_INCLUDED
 #define TLIST_H_INCLUDED
 
+#include "TNo.h"
+
 class TList
 {
     private:
@@ -12,6 +14,7 @@ class TList
         ~TList();
         float getDist();
         void setDist(float dist);
+        void insertLast(float dist);
         void start();
         void next();
         bool isEnd();

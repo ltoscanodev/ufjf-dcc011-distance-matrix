@@ -1,17 +1,20 @@
+#include <iostream>
 #include "TList.h"
-#include "TNo.h"
 
-TList::TList(int linha) {
+using namespace std;
+
+TList::TList(int linha)
+{
     first = NULL;
     it = NULL;
     i = linha;
 }
 
 TList::~TList() {
-    TNo* p = first;
+    TNo *p = first;
     while(p != NULL)
     {
-        TNo* t = p->consultaProx();
+        TNo *t = p->getNext();
         delete p;
         p = t;
     }
@@ -44,11 +47,11 @@ bool TList::isEnd(){
     return false;
 }
 
-void TList::InsertLast(float val){
+void TList::insertLast(float dist){
     TNo *p = new TNo();
-    p->setInfo(val);
+    p->setInfo(dist);
 
-    TNo aux = first;
+    TNo *aux = first;
 
     if(aux == NULL){
         first = p;

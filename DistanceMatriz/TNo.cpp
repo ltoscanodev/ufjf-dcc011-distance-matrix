@@ -6,12 +6,12 @@ TNo::~TNo() { }
 
 float TNo::getInfo()
 {
-    return dist;
+    return info;
 }
 
 void TNo::setInfo(float val)
 {
-    dist = val;
+    info = val;
 }
 
 TNo* TNo::getNext()
