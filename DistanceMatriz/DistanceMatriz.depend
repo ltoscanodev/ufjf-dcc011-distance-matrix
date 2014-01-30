@@ -32,3 +32,34 @@
 1391093091 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tno.cpp
 	"TNo.h"
 
+1391098348 source:c:\users\marina\documents\github\distancematriz\distancematriz\main.cpp
+	"TDistMat.h"
+	<iostream>
+	<fstream>
+	<sstream>
+	<string>
+
+1391098509 c:\users\marina\documents\github\distancematriz\distancematriz\tdistmat.h
+
+1391098660 source:c:\users\marina\documents\github\distancematriz\distancematriz\tdistmat.cpp
+	"TDistMat.h"
+	<iostream>
+
+1391095125 source:c:\users\marina\documents\github\distancematriz\distancematriz\tdistmat2.cpp
+	"TDistMat2.h"
+
+1391098348 c:\users\marina\documents\github\distancematriz\distancematriz\tdistmat2.h
+	"TList.h"
+
+1391098348 c:\users\marina\documents\github\distancematriz\distancematriz\tlist.h
+	"TNo.h"
+
+1390480159 c:\users\marina\documents\github\distancematriz\distancematriz\tno.h
+
+1391098348 source:c:\users\marina\documents\github\distancematriz\distancematriz\tlist.cpp
+	<iostream>
+	"TList.h"
+
+1391098348 source:c:\users\marina\documents\github\distancematriz\distancematriz\tno.cpp
+	"TNo.h"
+

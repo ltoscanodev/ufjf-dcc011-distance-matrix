@@ -11,7 +11,8 @@ using namespace std;
 TDistMat::TDistMat(int ordem)
 {
     n = ordem;
-    mat = new float[n * n];
+    nVet = ((n * (n - 1)) / 2);
+    mat = new float[nVet];
 }
 
 /*
@@ -42,7 +43,7 @@ bool TDistMat::isValidIndex(int i, int j)
 int TDistMat::convertIndex(int i, int j)
 {
     if(isValidIndex(i, j))
-        return (i + n * j);
+        return ((i * (i + 1)) / (2 + j));
 
     return -1;
 }
