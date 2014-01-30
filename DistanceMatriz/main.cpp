@@ -54,12 +54,32 @@ TDistMat* readMatriz(string fileName)
     return NULL;
 }
 
+void consult(TDistMat *p){
+    int i = 0;
+    int j = 0;
+
+    cout << " -- CONSULTA DA MATRIZ DISTÂNCIA -- " << endl;
+
+    while(i != -1 && j != -1){
+        cout << endl << "Insira i: ";
+        cin >> i;
+        cout << "Insira j: ";
+        cin >> j;
+        if(i != -1 && j != -1)
+            cout << endl << "[" << i << "][" << j << "]: " << p->getDist(i, j) << endl;
+    }
+
+    cout << endl << " -- FIM DA CONSULTA -- ";
+}
+
 int main()
 {
     TDistMat *distMat = readMatriz("Matrizes/matriz.txt");
 
     if(distMat != NULL)
         distMat->print();
+
+    consult(distMat);
 
     return 0;
 }

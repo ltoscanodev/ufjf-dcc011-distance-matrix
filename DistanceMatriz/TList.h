@@ -4,10 +4,11 @@
 class TList
 {
     private:
-        TNo *first;
-        TNo *it;
+        TNo *first; //Ponteiro para o primeiro item da lista
+        TNo *it; //Ponteiro para determinado item da lista
+        int i; //Determina qual é a linha
     public:
-        TList();
+        TList(int linha);
         ~TList();
         float getDist();
         void setDist(float dist);

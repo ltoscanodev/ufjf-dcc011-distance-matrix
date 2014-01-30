@@ -34,6 +34,12 @@
 		</Compiler>
 		<Unit filename="TDistMat.cpp" />
 		<Unit filename="TDistMat.h" />
+		<Unit filename="TDistMat2.cpp" />
+		<Unit filename="TDistMat2.h" />
+		<Unit filename="TList.cpp" />
+		<Unit filename="TList.h" />
+		<Unit filename="TNo.cpp" />
+		<Unit filename="TNo.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
