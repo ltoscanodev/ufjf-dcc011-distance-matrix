@@ -63,3 +63,36 @@
 1391098348 source:c:\users\marina\documents\github\distancematriz\distancematriz\tno.cpp
 	"TNo.h"
 
+1391125045 source:c:\users\-igor\documents\github\distancematriz\distancematriz\main.cpp
+	"TDistMat.h"
+	<iostream>
+	<fstream>
+	<sstream>
+	<string>
+
+1391122156 c:\users\-igor\documents\github\distancematriz\distancematriz\tdistmat.h
+
+1391122156 source:c:\users\-igor\documents\github\distancematriz\distancematriz\tdistmat.cpp
+	"TDistMat.h"
+	<iostream>
+
+1391127071 source:c:\users\-igor\documents\github\distancematriz\distancematriz\tdistmat2.cpp
+	"TDistMat2.h"
+	"TList.h"
+	<iostream>
+
+1391126589 c:\users\-igor\documents\github\distancematriz\distancematriz\tdistmat2.h
+	"TList.h"
+
+1391125723 c:\users\-igor\documents\github\distancematriz\distancematriz\tlist.h
+	"TNo.h"
+
+1390911549 c:\users\-igor\documents\github\distancematriz\distancematriz\tno.h
+
+1391127463 source:c:\users\-igor\documents\github\distancematriz\distancematriz\tlist.cpp
+	<iostream>
+	"TList.h"
+
+1391122156 source:c:\users\-igor\documents\github\distancematriz\distancematriz\tno.cpp
+	"TNo.h"
+

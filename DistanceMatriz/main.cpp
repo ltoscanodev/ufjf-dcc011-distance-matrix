@@ -54,6 +54,12 @@ TDistMat* readMatriz(string fileName)
     return NULL;
 }
 
+
+/*
+    Descrição: Método que realiza a cosulta da matriz
+    Autor: Igor Pires dos Santos
+*/
+
 void consultItem(TDistMat *p)
 {
     int i = 0;
@@ -79,8 +85,8 @@ int main()
 {
     TDistMat *distMat = readMatriz("Matrizes/matriz.txt");
 
-    /*if(distMat != NULL)
-        distMat->print();*/
+    if(distMat != NULL)
+        distMat->print();
 
     consultItem(distMat);
 
