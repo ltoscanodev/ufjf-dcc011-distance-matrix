@@ -94,13 +94,8 @@ int main()
 {
     TDistMat *distMat = readMatriz("Matrizes/teste1.txt");
 
-<<<<<<< HEAD
 //    if(distMat != NULL)
 //        distMat->print();
-=======
-    if(distMat != NULL)
-        distMat->print();
->>>>>>> 3da367c48464f17a86638a7fce23e58a5b770bca
 
     //consultItem(distMat);
 
