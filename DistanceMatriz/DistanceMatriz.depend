@@ -1,15 +1,15 @@
 # depslib dependency file v1.0
-1391128504 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\main.cpp
+1391185616 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\main.cpp
 	"TDistMat.h"
 	<iostream>
 	<fstream>
 	<sstream>
 	<string>
-	<cmath>
+	<cstdlib>
 
 1391095203 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.h
 
-1391095203 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.cpp
+1391170298 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.cpp
 	"TDistMat.h"
 	<iostream>
 

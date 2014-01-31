@@ -66,7 +66,7 @@ float TDistMat::getDist(int i, int j)
          return mat[index];
     }
     else
-        cout << "Índice inválido" << endl;
+        cout << "Indice invalido" << endl;
 
     return -1;
 }
@@ -90,7 +90,7 @@ void TDistMat::setDist(int i, int j, float dist)
         }
     }
     else
-        cout << "Índice inválido" << endl;
+        cout << "Indice invalido" << endl;
 }
 
 /*
