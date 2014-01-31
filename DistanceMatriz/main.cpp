@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ TDistMat* readMatriz(string fileName)
     {
         int i = 1;
         int j = 0;
+        int cont = 0;
 
         string line;
         getline(streamFile, line);
@@ -30,25 +32,32 @@ TDistMat* readMatriz(string fileName)
         float ordem;
         streamLine >> ordem;
 
-        TDistMat *distMat = new TDistMat(ordem);
-
-        while (getline(streamFile, line))
+        if(!isnan(ordem) && (ordem > 0))
         {
-            float dist;
-            istringstream streamLine(line);
+            TDistMat *distMat = new TDistMat(ordem);
 
-            while(streamLine >> dist)
+            while (getline(streamFile, line))
             {
-                distMat->setDist(i, j, dist);
-                j++;
+                float dist;
+                istringstream streamLine(line);
+
+                while(streamLine >> dist)
+                {
+                    cout << "Valor lido: " << dist << endl;
+                    cont++;
+                    distMat->setDist(i, j, dist);
+                    j++;
+                }
+
+                j = 0;
+                i++;
             }
-
-            j = 0;
-            i++;
+            cout << "Itens lidos: " << cont << endl;
+            streamFile.close();
+            return distMat;
         }
-
-        streamFile.close();
-        return distMat;
+        else
+            cout << "[ Erro: Ordem da matriz invalida ]" << endl;
     }
 
     return NULL;
@@ -77,12 +86,12 @@ void consultItem(TDistMat *p)
 
 int main()
 {
-    TDistMat *distMat = readMatriz("Matrizes/matriz.txt");
+    TDistMat *distMat = readMatriz("Matrizes/teste1.txt");
 
-    /*if(distMat != NULL)
-        distMat->print();*/
+//    if(distMat != NULL)
+//        distMat->print();
 
-    consultItem(distMat);
+    //consultItem(distMat);
 
     return 0;
 }
