@@ -14,6 +14,7 @@ TList::TList()
 TList::~TList()
 {
     TNo *p = first;
+
     while(p != NULL)
     {
         TNo *t = p->getNext();
@@ -31,30 +32,37 @@ float TList::getDistJ(int j)
 {
     cout << "CHEGOU AQUI !" << endl;
     TNo *aux = first;
-    while(aux != NULL){
-        if(aux->getJ() == j){
+
+    while(aux != NULL)
+    {
+        if(aux->getIndex() == j)
             return aux->getInfo();
-        }
+
         aux = aux->getNext();
     }
 
     return -1;
 }
 
-void TList::setDist(float dist)
+void TList::setDist(float dist) // Tirar isso
 {
     it->setInfo(dist);
 }
 
-void TList::setDistJ(int j, float dist)
+void TList::setDist(int j, float dist)
 {
     TNo *p = new TNo(j);
     p->setInfo(dist);
-    if(!isEmpty()){
+    p->setNext(NULL);
+
+    if(!isEmpty())
+    {
         TNo *aux = last;
         aux->setNext(p);
         last = p;
-    } else {
+    }
+    else
+    {
         first = p;
         last = p;
     }
@@ -87,10 +95,20 @@ bool TList::isEnd()
     return false;
 }
 
-bool TList::isEmpty(){
-    if(true)
-        return true;
-    return false;
+bool TList::isEmpty()
+{
+    return (n == 0);
+}
+
+void TList::print()
+{
+    TNo *p = first;
+
+    while(p != NULL)
+    {
+        cout << "[" << p->getIndex() << "]: " << p->getInfo() << endl;
+        p = p->getNext();
+    }
 }
 
 //FALTA FAZER UM MÉTODO QUE APAGUE !!!!

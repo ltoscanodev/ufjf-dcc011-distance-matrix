@@ -80,9 +80,9 @@ void TDistMat2::setDist(int i, int j, float dist)
         if(i != j)
         {
             if(j > i)
-                mat[j].setDistJ(i,dist);
+                mat[j].setDist(i,dist);
             else
-                mat[i].setDistJ(j,dist);
+                mat[i].setDist(j,dist);
         }
         else
             cout << "Índice inválido" << endl;

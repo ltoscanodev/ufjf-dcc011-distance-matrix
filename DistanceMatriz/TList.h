@@ -16,12 +16,13 @@ class TList
         float getDist();
         float getDistJ(int j);
         void setDist(float dist);
-        void setDistJ(int j, float dist);
+        void setDist(int j, float dist);
         void insertLast(float dist);
         void start();
         void next();
         bool isEnd();
         bool isEmpty();
+        void print();
 };
 
 #endif // TLIST_H_INCLUDED

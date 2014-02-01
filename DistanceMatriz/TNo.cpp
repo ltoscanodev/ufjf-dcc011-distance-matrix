@@ -2,19 +2,19 @@
 
 TNo::TNo(int j)
 {
-    n = j;
+    index = j;
 }
 
 TNo::~TNo() { }
 
+int TNo::getIndex()
+{
+    return index;
+}
+
 float TNo::getInfo()
 {
     return info;
-}
-
-int TNo::getJ()
-{
-    return n;
 }
 
 void TNo::setInfo(float val)

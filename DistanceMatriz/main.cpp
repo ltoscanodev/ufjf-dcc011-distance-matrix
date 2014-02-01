@@ -1,10 +1,12 @@
 #include "TDistMat.h"
+#include "TDistMat2.h"
+#include "TList.h"
 
 #include <iostream>
+#include <cstdlib>
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <cstdlib>
 
 using namespace std;
 
@@ -13,13 +15,20 @@ void clearScreen()
 #ifdef _WIN32
       system ("cls");
 #else
-      system ( "clear" );
+      system ("clear");
 #endif
 }
 
 void waitToContinue()
 {
-    system("PAUSE");
+    char wait;
+
+    while(wait != 'c')
+    {
+        cout << "Digite 'c' para continuar..." << endl;
+        cin >> wait;
+        clearScreen();
+    }
 }
 
 /*
@@ -129,26 +138,35 @@ void parseOption(int op, TDistMat *mat)
 
 int main()
 {
-    TDistMat *distMat = readMatriz("Matrizes/teste1.txt");
+//    TDistMat *distMat = readMatriz("Matrizes/teste1.txt");
+//
+//    if(distMat != NULL)
+//    {
+//        bool again = true;
+//
+//        while(again)
+//        {
+//            int op;
+//
+//            clearScreen();
+//            cout << endl << "-- MATRIZ DE DISTANCIA --" << endl << endl;
+//            cout << "[1] - Imprimir matriz" << endl;
+//            cout << "[2] - Consultar da matriz" << endl;
+//            cout << "[0] - Sair" << endl;
+//            cout << "Opcao: ";
+//            cin >> op;
+//            parseOption(op, distMat);
+//        }
+//    }
 
-    if(distMat != NULL)
+    TList *l = new TList();
+
+    for(int i = 0; i < 10; i++)
     {
-        bool again = true;
-
-        while(again)
-        {
-            int op;
-
-            clearScreen();
-            cout << endl << "-- MATRIZ DE DISTANCIA --" << endl << endl;
-            cout << "[1] - Imprimir matriz" << endl;
-            cout << "[2] - Consultar da matriz" << endl;
-            cout << "[0] - Sair" << endl;
-            cout << "Opcao: ";
-            cin >> op;
-            parseOption(op, distMat);
-        }
+        l->setDist(i, 10);
     }
+
+    l->print();
 
     return 0;
 }
