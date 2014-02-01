@@ -1,12 +1,20 @@
 #include "TNo.h"
 
-TNo::TNo() { }
+TNo::TNo(int j)
+{
+    n = j;
+}
 
 TNo::~TNo() { }
 
 float TNo::getInfo()
 {
     return info;
+}
+
+int TNo::getJ()
+{
+    return n;
 }
 
 void TNo::setInfo(float val)

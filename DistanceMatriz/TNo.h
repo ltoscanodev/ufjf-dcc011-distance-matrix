@@ -4,12 +4,14 @@
 class TNo
 {
     private:
+        int n;
         float info;
         TNo *next;
     public:
-        TNo();
+        TNo(int j);
         ~TNo();
         float getInfo();
+        int getJ();
         void setInfo(float val);
         TNo* getNext();
         void setNext(TNo *p);

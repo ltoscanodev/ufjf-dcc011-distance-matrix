@@ -5,7 +5,9 @@ using namespace std;
 
 TList::TList()
 {
+    n = 0;
     first = NULL;
+    last = NULL;
     it = NULL;
 }
 
@@ -27,12 +29,14 @@ float TList::getDist()
 
 float TList::getDistJ(int j)
 {
+    cout << "CHEGOU AQUI !" << endl;
     TNo *aux = first;
-    int k;
-    for(k = 0; k < j && aux->getNext() != NULL; k++)
+    while(aux != NULL){
+        if(aux->getJ() == j){
+            return aux->getInfo();
+        }
         aux = aux->getNext();
-    if(k == j)
-        return aux->getInfo();
+    }
 
     return -1;
 }
@@ -44,14 +48,18 @@ void TList::setDist(float dist)
 
 void TList::setDistJ(int j, float dist)
 {
-    TNo *aux = first;
-    int k;
-    for(k = 0; k < j && aux->getNext() != NULL; k++)
-        aux = aux->getNext();
-    if(k == j)
-        aux->setInfo(dist);
-    else
-        cout << "ERRO DE INSERÇÃO, COLUNA INVÁLIDA" << endl;
+    TNo *p = new TNo(j);
+    p->setInfo(dist);
+    if(!isEmpty()){
+        TNo *aux = last;
+        aux->setNext(p);
+        last = p;
+    } else {
+        first = p;
+        last = p;
+    }
+
+    n++;
 }
 
 
@@ -79,22 +87,10 @@ bool TList::isEnd()
     return false;
 }
 
-void TList::insertLast(float dist)
-{
-    TNo *p = new TNo();
-    p->setInfo(dist);
-    TNo *aux = first;
-    if(aux == NULL)
-    {
-        first = p;
-        it = first;
-    }
-    else
-    {
-        while(aux->getNext() != NULL)
-            aux = aux->getNext();
-        aux->setNext(p);
-    }
+bool TList::isEmpty(){
+    if(true)
+        return true;
+    return false;
 }
 
 //FALTA FAZER UM MÉTODO QUE APAGUE !!!!
