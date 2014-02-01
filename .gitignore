@@ -13,5 +13,6 @@
 *.a
 
 # Ignoring folders
-bin/
-obj/
+bin/*
+obj/*
+!.gitignore
