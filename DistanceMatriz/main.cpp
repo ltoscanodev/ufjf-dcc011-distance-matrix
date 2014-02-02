@@ -136,6 +136,115 @@ void parseOption(int op, TDistMat *mat)
     }
 }
 
+/***************************
+            PARTE 2
+***************************/
+/*
+    Descrição: Método que lê o arquivo que contêm a matriz
+    Autor: Luis Augusto Toscano
+*/
+TDistMat2* readMatriz2(string fileName)
+{
+    ifstream streamFile;
+    streamFile.open(fileName.c_str());
+
+    if (!streamFile.is_open())
+        cout << "Erro ao carregar o arquivo da matriz!" << endl;
+    else
+    {
+        int i = 1;
+        int j = 0;
+        int readLength = 0;
+
+        string line;
+        getline(streamFile, line);
+        istringstream streamLine(line);
+
+        float ordem;
+        streamLine >> ordem;
+
+        if(streamLine && (ordem > 0))
+        {
+            TDistMat2 *distMat = new TDistMat2(ordem);
+
+            while (getline(streamFile, line))
+            {
+                float dist;
+                istringstream streamLine(line);
+
+                while(streamLine >> dist)
+                {
+                    distMat->setDist(i, j, dist);
+                    j++;
+                    readLength++;
+                }
+
+                j = 0;
+                i++;
+            }
+            streamFile.close();
+
+            if(readLength == ((ordem * (ordem - 1)) / 2))
+                return distMat;
+            else
+                cout << "[ Erro: Arquivo da matriz corrompido ]" << endl;
+        }
+        else
+            cout << "[ Erro: Ordem da matriz invalida ]" << endl;
+    }
+
+    return NULL;
+}
+
+void printMat2(TDistMat2 *p)
+{
+    p->print();
+    waitToContinue();
+}
+
+/*
+    Descrição: Método que realiza a cosulta da matriz
+    Autor: Igor Pires dos Santos
+*/
+void consultMat2(TDistMat2 *p)
+{
+    int i = 0;
+    int j = 0;
+
+    cout << endl << " -- CONSULTAR ITEM DA MATRIZ DISTANCIA -- " << endl << endl;
+
+    while(i != -1 && j != -1)
+    {
+        cout << "Insira i: ";
+        cin >> i;
+        cout << "Insira j: ";
+        cin >> j;
+
+        if(i != -1 && j != -1)
+            cout << endl << "[" << i << "][" << j << "]: " << p->getDist(i, j) << endl << endl;
+    }
+
+    cout << endl << " -- FIM DA CONSULTA -- " << endl;
+}
+
+void parseOption2(int op, TDistMat2 *mat)
+{
+    switch(op)
+    {
+        case 1:
+            printMat2(mat);
+            break;
+        case 2:
+            consultMat2(mat);
+            break;
+        case 0:
+            exit(0);
+        default:
+            cout << "Opcao invalida!" << endl;
+    }
+}
+
+
 int main()
 {
 //    TDistMat *distMat = readMatriz("Matrizes/teste1.txt");
@@ -159,14 +268,30 @@ int main()
 //        }
 //    }
 
-    TList *l = new TList();
+/************************************************
+                    Teste 2
+*************************************************/
 
-    for(int i = 0; i < 10; i++)
+    TDistMat2 *distMat2 = readMatriz2("Matrizes/teste1.txt");
+
+    if(distMat2 != NULL)
     {
-        l->setDist(i, 10);
-    }
+        bool again = true;
 
-    l->print();
+        while(again)
+        {
+            int op;
+
+            clearScreen();
+            cout << endl << "-- MATRIZ DE DISTANCIA --" << endl << endl;
+            cout << "[1] - Imprimir matriz" << endl;
+            cout << "[2] - Consultar da matriz" << endl;
+            cout << "[0] - Sair" << endl;
+            cout << "Opcao: ";
+            cin >> op;
+            parseOption2(op, distMat2);
+        }
+    }
 
     return 0;
 }

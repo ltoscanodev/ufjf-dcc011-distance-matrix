@@ -30,7 +30,6 @@ float TList::getDist()
 
 float TList::getDistJ(int j)
 {
-    cout << "CHEGOU AQUI !" << endl;
     TNo *aux = first;
 
     while(aux != NULL)

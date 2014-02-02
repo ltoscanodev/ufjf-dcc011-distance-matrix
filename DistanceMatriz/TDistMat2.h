@@ -8,7 +8,7 @@ class TDistMat2
     private:
         int n; // Ordem da matriz
         int nVet; // Quantidade de linhas do vetor
-        TList *mat; // Vetor que armazena a matriz
+        TList **mat; // Vetor que armazena a matriz
         bool isValidIndex(int i, int j); // Verifica se o índice é válido
     public:
         TDistMat2(int ordem);

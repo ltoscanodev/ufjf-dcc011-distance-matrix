@@ -13,7 +13,9 @@ TDistMat2::TDistMat2(int ordem)
 {
     n = ordem;
     nVet = n - 1;
-    mat = new TList[nVet];
+    mat = new TList*[nVet];
+    for(int i = 0; i < nVet; i++)
+        mat[i] = new TList();
 }
 
 
@@ -23,12 +25,11 @@ TDistMat2::TDistMat2(int ordem)
 */
 TDistMat2::~TDistMat2()
 {
-//    SE NÃO FOREM PONTEIROS NÃO PRECISA DISSO !
-//    for(int k = 0; k < n; k++)
-//    {
-//        TList p = mat[k];
-//        delete p;
-//    }
+    for(int k = 0; k < n; k++)
+    {
+        TList *p = mat[k];
+        delete p;
+    }
 
     delete [] mat;
 }
@@ -58,9 +59,9 @@ float TDistMat2::getDist(int i, int j)
         else if(i != j)
         {
             if(j > i)
-                return mat[j].getDistJ(i);
+                return mat[j-1]->getDistJ(i);
 
-            return mat[i].getDistJ(j);
+            return mat[i-1]->getDistJ(j);
         }
         else
             cout << "Índice inválido" << endl;
@@ -80,9 +81,9 @@ void TDistMat2::setDist(int i, int j, float dist)
         if(i != j)
         {
             if(j > i)
-                mat[j].setDist(i,dist);
+                mat[j-1]->setDist(i,dist);
             else
-                mat[i].setDist(j,dist);
+                mat[i-1]->setDist(j,dist);
         }
         else
             cout << "Índice inválido" << endl;
