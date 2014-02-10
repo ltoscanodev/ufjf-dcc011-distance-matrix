@@ -1,24 +1,24 @@
 #ifndef TLIST_H_INCLUDED
 #define TLIST_H_INCLUDED
-
 #include "TNo.h"
 
 class TList
 {
     private:
-        TNo *first; //Ponteiro para o primeiro item da lista
-        TNo *last; //Ponteiro para o último item da lista
-        TNo *it; //Ponteiro para determinado item da lista
+        TNo *first; // Primeiro elemento da lista
+        TNo *last; // Último elemento da lista
+        TNo *it; // Utilizado na busca por um elemento
+
+        bool searchDist(int index); // Busca por um índice j da matriz
+        float getDist(); // Consulta a distância do nó it
+        void setDist(float dist); // Atribui uma distância ao nó it
     public:
-        TList();
-        ~TList();
-        bool searchDist(int index);
-        float getDist();
-        float getDist(int j);
-        void setDist(float dist);
-        void setDist(int j, float dist);
-        bool isEmpty();
-        void print();
+        TList(); // Construtor do TAD
+        ~TList(); // Destrutor do TAD
+        float getDist(int j); // Consulta a distância por um índice j da matriz
+        void setDist(int j, float dist); // Atribui um índice e uma distância da matriz
+        bool isEmpty(); // Verifica se a lista está vazia
+        void print(); // Imprime a matriz
 };
 
 #endif // TLIST_H_INCLUDED

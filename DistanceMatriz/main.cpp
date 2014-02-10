@@ -2,15 +2,17 @@
 #include "TDistMat2.h"
 
 #include <iostream>
-#include <cstdlib>
 #include <fstream>
 #include <sstream>
+#include <cstdlib>
 #include <string>
 #include <limits>
-#include <vector>
 
 using namespace std;
 
+/*
+    Descrição: Método que limpa a tela do console, compatível com Windows e Linux
+*/
 void clearScreen()
 {
 #ifdef _WIN32
@@ -20,9 +22,12 @@ void clearScreen()
 #endif
 }
 
+/*
+    Descrição: Método criado para pausar temporariamente a execução do programa
+*/
 void waitToContinue()
 {
-    char wait;
+    string wait;
 
     do
     {
@@ -30,13 +35,12 @@ void waitToContinue()
         cin >> wait;
         clearScreen();
     }
-    while(wait != 'c');
+    while(wait != "c");
 }
 
-/****************************************************************************************************/
-/**************************************** GENERIC TYPES **************************************************/
-/****************************************************************************************************/
-
+/*
+    Descrição: Método genérico que lê um arquivo dos dados da matriz
+*/
 template <class T> T* readMat(string fileName)
 {
     ifstream streamFile;
@@ -69,8 +73,8 @@ template <class T> T* readMat(string fileName)
                 while(streamLine >> dist)
                 {
                     distMat->setDist(i, j, dist);
-                    j++;
                     readLength++;
+                    j++;
                 }
 
                 j = 0;
@@ -98,6 +102,9 @@ template <class T> T* readMat(string fileName)
     return NULL;
 }
 
+/*
+    Descrição: Método genérico que exibe na tela uma mensagem e espera uma entrada
+*/
 template <typename T> T getInput(string desc)
 {
     T result;
@@ -111,7 +118,7 @@ template <typename T> T getInput(string desc)
         {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << endl << "[ Erro: Indice invalido ]" << endl;
+            cout << endl << "[ Erro: Entrada invalida ]" << endl;
             waitToContinue();
         }
         else
@@ -121,6 +128,9 @@ template <typename T> T getInput(string desc)
     return result;
 }
 
+/*
+    Descrição: Método genérico para consultar um item da matriz
+*/
 template <class T> void consultMat(T *distMat)
 {
     clearScreen();
@@ -134,6 +144,9 @@ template <class T> void consultMat(T *distMat)
     waitToContinue();
 }
 
+/*
+    Descrição: Método genérico que altera um elemento da matriz
+*/
 template <class T> void changeMat(T *distMat)
 {
     clearScreen();
@@ -152,13 +165,20 @@ template <class T> void changeMat(T *distMat)
     waitToContinue();
 }
 
+/*
+    Descrição: Método genérico que imprime a matriz
+*/
 template <class T> void printMat(T *p)
 {
     clearScreen();
+    cout << " -- IMPRESSAO DA MATRIZ DISTANCIA -- " << endl << endl;
     p->print();
     waitToContinue();
 }
 
+/*
+    Descrição: Método genérico que verifica a escolha do menu
+*/
 template <class T> void parseMenu(int menuOp, T *p)
 {
     switch(menuOp)
@@ -181,10 +201,9 @@ template <class T> void parseMenu(int menuOp, T *p)
     }
 }
 
-/****************************************************************************************************/
-/**************************************** END GENERIC TYPES **************************************************/
-/****************************************************************************************************/
-
+/*
+    Descrição: Método genérico que exibe o menu para a escolha dos TADs
+*/
 int showMenuTAD()
 {
     int tadOp;
@@ -198,8 +217,7 @@ int showMenuTAD()
         cout << "[1] - TAD vetor (Parte 1)" << endl;
         cout << "[2] - TAD vetor de listas (Parte 2)" << endl;
         cout << "[0] - Sair" << endl;
-        cout << "Opcao: ";
-        cin >> tadOp;
+        tadOp = getInput<int>("Opcao: ");
 
         if((tadOp == 1) || (tadOp == 2) || (tadOp == 0))
             again = false;
@@ -214,22 +232,25 @@ int showMenuTAD()
     return tadOp;
 }
 
+/*
+    Descrição: Método genérico que exibe o menu da matriz
+*/
 int showMenu()
 {
-    int op;
     clearScreen();
 
-    cout << "-- MATRIZ DE DISTANCIA --" << endl << endl;
+    cout << " -- MATRIZ DE DISTANCIA -- " << endl << endl;
     cout << "[1] - Imprimir matriz" << endl;
     cout << "[2] - Consultar item da matriz" << endl;
     cout << "[3] - Alterar item da matriz" << endl;
     cout << "[0] - Sair" << endl;
-    cout << "Opcao: ";
-    cin >> op;
 
-    return op;
+    return getInput<int>("Opcao: ");
 }
 
+/*
+    Descrição: Método genérico que verifica se um arquivo existe tomando como base o diretório de execução
+*/
 bool checkFileExists(string fileName)
 {
     if (ifstream(fileName.c_str()))
@@ -238,6 +259,9 @@ bool checkFileExists(string fileName)
     return false;
 }
 
+/*
+    Descrição: Método genérico que exibe o menu para a entrada do arquivo da matriz
+*/
 string showMenuFileName()
 {
     string fileName;

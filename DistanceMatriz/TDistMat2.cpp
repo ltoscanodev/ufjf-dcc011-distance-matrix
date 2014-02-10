@@ -1,8 +1,4 @@
 #include "TDistMat2.h"
-#include "TList.h"
-#include <iostream>
-
-using namespace std;
 
 /*
     Descrição: Implementação do método construtor do TAD, recebe como parâmetro a ordem da matriz e aloca
@@ -53,16 +49,16 @@ float TDistMat2::getDist(int i, int j)
     {
         if(i == j)
             return 0;
-        else if(i != j)
+        else
         {
             if(j > i)
                 return mat[j-1]->getDist(i);
 
             return mat[i-1]->getDist(j);
         }
-        else
-            cout << endl << "[ Erro: Indice invalido ]" << endl;
     }
+    else
+        cout << endl << "[ Erro: Indice invalido ]" << endl;
 
     return -1;
 }
