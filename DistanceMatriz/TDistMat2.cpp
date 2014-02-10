@@ -7,13 +7,13 @@ using namespace std;
 /*
     Descrição: Implementação do método construtor do TAD, recebe como parâmetro a ordem da matriz e aloca
                memória para um vetor [n - 1] de listas
-    Autor: Igor Pires dos Santos
 */
 TDistMat2::TDistMat2(int ordem)
 {
     n = ordem;
     nVet = n - 1;
     mat = new TList*[nVet];
+
     for(int i = 0; i < nVet; i++)
         mat[i] = new TList();
 }
@@ -21,7 +21,6 @@ TDistMat2::TDistMat2(int ordem)
 
 /*
     Descrição: Implementação do método destrutor do TAD, desaloca as listas e em seguida o vetor que guarda estas
-    Autor: Igor Pires dos Santos
 */
 TDistMat2::~TDistMat2()
 {
@@ -36,7 +35,6 @@ TDistMat2::~TDistMat2()
 
 /*
     Descrição: Implementação do método isValidIndex do TAD
-    Autor: Igor Pires dos Santos
 */
 bool TDistMat2::isValidIndex(int i, int j)
 {
@@ -48,7 +46,6 @@ bool TDistMat2::isValidIndex(int i, int j)
 
 /*
     Descrição: Implementação do método getDist do TAD
-    Autor: Igor Pires dos Santos
 */
 float TDistMat2::getDist(int i, int j)
 {
@@ -59,12 +56,12 @@ float TDistMat2::getDist(int i, int j)
         else if(i != j)
         {
             if(j > i)
-                return mat[j-1]->getDistJ(i);
+                return mat[j-1]->getDist(i);
 
-            return mat[i-1]->getDistJ(j);
+            return mat[i-1]->getDist(j);
         }
         else
-            cout << "Índice inválido" << endl;
+            cout << endl << "[ Erro: Indice invalido ]" << endl;
     }
 
     return -1;
@@ -72,28 +69,34 @@ float TDistMat2::getDist(int i, int j)
 
 /*
     Descrição: Implementação do método setDist do TAD
-    Autor: Igor Pires dos Santos
 */
-void TDistMat2::setDist(int i, int j, float dist)
+bool TDistMat2::setDist(int i, int j, float dist)
 {
     if(isValidIndex(i,j))
     {
         if(i != j)
         {
-            if(j > i)
-                mat[j-1]->setDist(i,dist);
-            else
-                mat[i-1]->setDist(j,dist);
-        }
-        else
-            cout << "Índice inválido" << endl;
+            if(dist >= 0)
+            {
+                if(j > i)
+                    mat[j-1]->setDist(i,dist);
+                else
+                    mat[i-1]->setDist(j,dist);
 
+                return true;
+            }
+            else
+                cout << endl << "[ Erro: Valor invalido para distancia ]" << endl;
+        }
     }
+    else
+        cout << endl << "[ Erro: Indice invalido ]" << endl;
+
+    return false;
 }
 
 /*
     Descrição: Implementação do método print do TAD
-    Autor: Luis Augusto Toscano
 */
 void TDistMat2::print()
 {

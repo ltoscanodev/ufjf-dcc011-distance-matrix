@@ -1,12 +1,13 @@
 #include "TDistMat.h"
 #include "TDistMat2.h"
-#include "TList.h"
 
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <limits>
+#include <vector>
 
 using namespace std;
 
@@ -23,41 +24,42 @@ void waitToContinue()
 {
     char wait;
 
-    while(wait != 'c')
+    do
     {
-        cout << "Digite 'c' para continuar..." << endl;
+        cout << endl << "Digite 'c' para continuar... ";
         cin >> wait;
         clearScreen();
     }
+    while(wait != 'c');
 }
 
-/*
-    Descrição: Método que lê o arquivo que contêm a matriz
-    Autor: Luis Augusto Toscano
-*/
-TDistMat* readMatriz(string fileName)
+/****************************************************************************************************/
+/**************************************** GENERIC TYPES **************************************************/
+/****************************************************************************************************/
+
+template <class T> T* readMat(string fileName)
 {
     ifstream streamFile;
     streamFile.open(fileName.c_str());
 
     if (!streamFile.is_open())
-        cout << "Erro ao carregar o arquivo da matriz!" << endl;
+    {
+        cout << endl << "[ Erro: Arquivo da matriz nao carregado ]" << endl;
+        waitToContinue();
+    }
     else
     {
-        int i = 1;
-        int j = 0;
-        int readLength = 0;
+        int ordem;
+        streamFile >> ordem;
 
-        string line;
-        getline(streamFile, line);
-        istringstream streamLine(line);
-
-        float ordem;
-        streamLine >> ordem;
-
-        if(streamLine && (ordem > 0))
+        if(streamFile && (ordem > 0))
         {
-            TDistMat *distMat = new TDistMat(ordem);
+            int i = 0;
+            int j = 0;
+            string line;
+            int readLength = 0;
+
+            T *distMat = new T(ordem);
 
             while (getline(streamFile, line))
             {
@@ -74,224 +76,237 @@ TDistMat* readMatriz(string fileName)
                 j = 0;
                 i++;
             }
+
             streamFile.close();
 
             if(readLength == ((ordem * (ordem - 1)) / 2))
                 return distMat;
             else
-                cout << "[ Erro: Arquivo da matriz corrompido ]" << endl;
-        }
-        else
-            cout << "[ Erro: Ordem da matriz invalida ]" << endl;
-    }
-
-    return NULL;
-}
-
-void printMat(TDistMat *p)
-{
-    p->print();
-    waitToContinue();
-}
-
-/*
-    Descrição: Método que realiza a cosulta da matriz
-    Autor: Igor Pires dos Santos
-*/
-void consultMat(TDistMat *p)
-{
-    int i = 0;
-    int j = 0;
-
-    cout << endl << " -- CONSULTAR ITEM DA MATRIZ DISTANCIA -- " << endl << endl;
-
-    while(i != -1 && j != -1)
-    {
-        cout << "Insira i: ";
-        cin >> i;
-        cout << "Insira j: ";
-        cin >> j;
-
-        if(i != -1 && j != -1)
-            cout << endl << "[" << i << "][" << j << "]: " << p->getDist(i, j) << endl << endl;
-    }
-
-    cout << endl << " -- FIM DA CONSULTA -- " << endl;
-}
-
-void parseOption(int op, TDistMat *mat)
-{
-    switch(op)
-    {
-        case 1:
-            printMat(mat);
-            break;
-        case 2:
-            consultMat(mat);
-            break;
-        case 0:
-            exit(0);
-        default:
-            cout << "Opcao invalida!" << endl;
-    }
-}
-
-/***************************
-            PARTE 2
-***************************/
-/*
-    Descrição: Método que lê o arquivo que contêm a matriz
-    Autor: Luis Augusto Toscano
-*/
-TDistMat2* readMatriz2(string fileName)
-{
-    ifstream streamFile;
-    streamFile.open(fileName.c_str());
-
-    if (!streamFile.is_open())
-        cout << "Erro ao carregar o arquivo da matriz!" << endl;
-    else
-    {
-        int i = 1;
-        int j = 0;
-        int readLength = 0;
-
-        string line;
-        getline(streamFile, line);
-        istringstream streamLine(line);
-
-        float ordem;
-        streamLine >> ordem;
-
-        if(streamLine && (ordem > 0))
-        {
-            TDistMat2 *distMat = new TDistMat2(ordem);
-
-            while (getline(streamFile, line))
             {
-                float dist;
-                istringstream streamLine(line);
-
-                while(streamLine >> dist)
-                {
-                    distMat->setDist(i, j, dist);
-                    j++;
-                    readLength++;
-                }
-
-                j = 0;
-                i++;
+                cout << endl << "[ Erro: Arquivo da matriz corrompido ]" << endl;
+                delete distMat;
+                waitToContinue();
             }
-            streamFile.close();
-
-            if(readLength == ((ordem * (ordem - 1)) / 2))
-                return distMat;
-            else
-                cout << "[ Erro: Arquivo da matriz corrompido ]" << endl;
         }
         else
-            cout << "[ Erro: Ordem da matriz invalida ]" << endl;
+        {
+            cout << endl << "[ Erro: Ordem da matriz invalida ]" << endl;
+            waitToContinue();
+        }
     }
 
     return NULL;
 }
 
-void printMat2(TDistMat2 *p)
+template <typename T> T getInput(string desc)
 {
+    T result;
+
+    while(true)
+    {
+        cout << desc;
+        cin >> result;
+
+        if (!cin)
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << endl << "[ Erro: Indice invalido ]" << endl;
+            waitToContinue();
+        }
+        else
+            break;
+    }
+
+    return result;
+}
+
+template <class T> void consultMat(T *distMat)
+{
+    clearScreen();
+    cout << " -- CONSULTAR ITEM DA MATRIZ DISTANCIA -- " << endl << endl;
+
+    int i = getInput<int>("Insira o indice i: ");
+    int j = getInput<int>("Insira o indice j: ");
+
+    cout << endl << "[" << i << "][" << j << "]: " << distMat->getDist(i, j) << endl;
+
+    waitToContinue();
+}
+
+template <class T> void changeMat(T *distMat)
+{
+    clearScreen();
+    cout << " -- ALTERAR ITEM DA MATRIZ DISTANCIA -- " << endl << endl;
+
+    int i = getInput<int>("Insira o indice i: ");
+    int j = getInput<int>("Insira o indice j: ");
+    float dist = getInput<float>("Insira a distancia: ");
+
+    if(distMat->setDist(i, j, dist))
+    {
+        cout << endl << "[" << i << "][" << j << "]: " << distMat->getDist(i, j) << endl;
+        cout << endl << "Valor alterado!" << endl;
+    }
+
+    waitToContinue();
+}
+
+template <class T> void printMat(T *p)
+{
+    clearScreen();
     p->print();
     waitToContinue();
 }
 
-/*
-    Descrição: Método que realiza a cosulta da matriz
-    Autor: Igor Pires dos Santos
-*/
-void consultMat2(TDistMat2 *p)
+template <class T> void parseMenu(int menuOp, T *p)
 {
-    int i = 0;
-    int j = 0;
-
-    cout << endl << " -- CONSULTAR ITEM DA MATRIZ DISTANCIA -- " << endl << endl;
-
-    while(i != -1 && j != -1)
-    {
-        cout << "Insira i: ";
-        cin >> i;
-        cout << "Insira j: ";
-        cin >> j;
-
-        if(i != -1 && j != -1)
-            cout << endl << "[" << i << "][" << j << "]: " << p->getDist(i, j) << endl << endl;
-    }
-
-    cout << endl << " -- FIM DA CONSULTA -- " << endl;
-}
-
-void parseOption2(int op, TDistMat2 *mat)
-{
-    switch(op)
+    switch(menuOp)
     {
         case 1:
-            printMat2(mat);
+            printMat<T>(p);
             break;
         case 2:
-            consultMat2(mat);
+            consultMat<T>(p);
+            break;
+        case 3:
+            changeMat<T>(p);
             break;
         case 0:
-            exit(0);
+            delete p;
+            break;
         default:
-            cout << "Opcao invalida!" << endl;
+            cout << endl << "[ Erro: Opcao invalida ]" << endl;
+            waitToContinue();
     }
 }
 
+/****************************************************************************************************/
+/**************************************** END GENERIC TYPES **************************************************/
+/****************************************************************************************************/
+
+int showMenuTAD()
+{
+    int tadOp;
+    bool again = true;
+
+    do
+    {
+        clearScreen();
+
+        cout << "Escolha um TAD para testar:" << endl << endl;
+        cout << "[1] - TAD vetor (Parte 1)" << endl;
+        cout << "[2] - TAD vetor de listas (Parte 2)" << endl;
+        cout << "[0] - Sair" << endl;
+        cout << "Opcao: ";
+        cin >> tadOp;
+
+        if((tadOp == 1) || (tadOp == 2) || (tadOp == 0))
+            again = false;
+        else
+        {
+            cout << endl << "[ Erro: Opcao invalida ]" << endl;
+            waitToContinue();
+        }
+    }
+    while(again);
+
+    return tadOp;
+}
+
+int showMenu()
+{
+    int op;
+    clearScreen();
+
+    cout << "-- MATRIZ DE DISTANCIA --" << endl << endl;
+    cout << "[1] - Imprimir matriz" << endl;
+    cout << "[2] - Consultar item da matriz" << endl;
+    cout << "[3] - Alterar item da matriz" << endl;
+    cout << "[0] - Sair" << endl;
+    cout << "Opcao: ";
+    cin >> op;
+
+    return op;
+}
+
+bool checkFileExists(string fileName)
+{
+    if (ifstream(fileName.c_str()))
+         return true;
+
+    return false;
+}
+
+string showMenuFileName()
+{
+    string fileName;
+    bool again = false;
+
+    do
+    {
+        clearScreen();
+
+        cout << "Insira o caminho do arquivo da matriz [Ex: Matrizes/matriz.txt]: ";
+        cin >> fileName;
+
+        if(checkFileExists(fileName))
+            again = true;
+        else
+        {
+            cout << endl << "[ Erro: Arquivo nao existe ]" << endl;
+            waitToContinue();
+        }
+    }
+    while(!again);
+
+    return fileName;
+}
 
 int main()
 {
-//    TDistMat *distMat = readMatriz("Matrizes/teste1.txt");
-//
-//    if(distMat != NULL)
-//    {
-//        bool again = true;
-//
-//        while(again)
-//        {
-//            int op;
-//
-//            clearScreen();
-//            cout << endl << "-- MATRIZ DE DISTANCIA --" << endl << endl;
-//            cout << "[1] - Imprimir matriz" << endl;
-//            cout << "[2] - Consultar da matriz" << endl;
-//            cout << "[0] - Sair" << endl;
-//            cout << "Opcao: ";
-//            cin >> op;
-//            parseOption(op, distMat);
-//        }
-//    }
+    int tadOp = -1;
 
-/************************************************
-                    Teste 2
-*************************************************/
-
-    TDistMat2 *distMat2 = readMatriz2("Matrizes/teste1.txt");
-
-    if(distMat2 != NULL)
+    do
     {
-        bool again = true;
+        tadOp = showMenuTAD();
 
-        while(again)
+        if(tadOp == 1)
         {
-            int op;
+            string fileName = showMenuFileName();
+            TDistMat *distMat = readMat<TDistMat>(fileName);
 
-            clearScreen();
-            cout << endl << "-- MATRIZ DE DISTANCIA --" << endl << endl;
-            cout << "[1] - Imprimir matriz" << endl;
-            cout << "[2] - Consultar da matriz" << endl;
-            cout << "[0] - Sair" << endl;
-            cout << "Opcao: ";
-            cin >> op;
-            parseOption2(op, distMat2);
+            if(distMat != NULL)
+            {
+                int menuOp = -1;
+
+                do
+                {
+                    menuOp = showMenu();
+                    parseMenu(menuOp, distMat);
+                }
+                while(menuOp != 0);
+            }
+        }
+        else if(tadOp == 2)
+        {
+            string fileName = showMenuFileName();
+            TDistMat2 *distMat2 = readMat<TDistMat2>(fileName);
+
+            if(distMat2 != NULL)
+            {
+                int menuOp = -1;
+
+                do
+                {
+                    menuOp = showMenu();
+                    parseMenu(menuOp, distMat2);
+                }
+                while(menuOp != 0);
+            }
         }
     }
+    while(tadOp != 0);
 
     return 0;
 }

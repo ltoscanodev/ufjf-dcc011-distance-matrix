@@ -6,21 +6,17 @@
 class TList
 {
     private:
-        int n; //Quantidade de elementos da linha
         TNo *first; //Ponteiro para o primeiro item da lista
         TNo *last; //Ponteiro para o último item da lista
         TNo *it; //Ponteiro para determinado item da lista
     public:
         TList();
         ~TList();
+        bool searchDist(int index);
         float getDist();
-        float getDistJ(int j);
+        float getDist(int j);
         void setDist(float dist);
         void setDist(int j, float dist);
-        void insertLast(float dist);
-        void start();
-        void next();
-        bool isEnd();
         bool isEmpty();
         void print();
 };

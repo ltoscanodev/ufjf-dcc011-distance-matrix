@@ -13,9 +13,9 @@ class TDistMat2
     public:
         TDistMat2(int ordem);
         float getDist(int i, int j); // Consulta a distância na posição i e j
-        void setDist(int i, int j, float dist); // Atribui uma distância à posição i e j
+        bool setDist(int i, int j, float dist); // Atribui uma distância à posição i e j
         void print(); // Imprime a matriz
-        virtual ~TDistMat2();
+        ~TDistMat2();
 
 };
 

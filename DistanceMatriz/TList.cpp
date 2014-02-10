@@ -5,7 +5,6 @@ using namespace std;
 
 TList::TList()
 {
-    n = 0;
     first = NULL;
     last = NULL;
     it = NULL;
@@ -25,10 +24,13 @@ TList::~TList()
 
 float TList::getDist()
 {
-    return it->getInfo();
+    if(it != NULL)
+        return it->getInfo();
+
+    return -1;
 }
 
-float TList::getDistJ(int j)
+float TList::getDist(int j)
 {
     TNo *aux = first;
 
@@ -43,60 +45,55 @@ float TList::getDistJ(int j)
     return -1;
 }
 
-void TList::setDist(float dist) // Tirar isso
+bool TList::searchDist(int j)
 {
-    it->setInfo(dist);
+    if(!isEmpty())
+    {
+        TNo *p = first;
+
+        while(p != NULL)
+        {
+            if(p->getIndex() == j)
+            {
+                it = p;
+                return true;
+            }
+
+            p = p->getNext();
+        }
+    }
+
+    return false;
+}
+
+void TList::setDist(float dist)
+{
+    if(it != NULL)
+        it->setInfo(dist);
 }
 
 void TList::setDist(int j, float dist)
 {
-    TNo *p = new TNo(j);
-    p->setInfo(dist);
-    p->setNext(NULL);
-
-    if(!isEmpty())
-    {
-        TNo *aux = last;
-        aux->setNext(p);
-        last = p;
-    }
+    if(searchDist(j))
+        setDist(dist);
     else
     {
-        first = p;
+        TNo *p = new TNo(j);
+        p->setInfo(dist);
+        p->setNext(NULL);
+
+        if(!isEmpty())
+            last->setNext(p);
+        else
+            first = p;
+
         last = p;
     }
-
-    n++;
-}
-
-
-void TList::start()
-{
-    it = first;
-}
-
-void TList::next()
-{
-    if(!isEnd())
-    {
-        it = it->getNext();
-    }
-    else
-    {
-        cout << "Não há mais valores nesta linha" << endl;
-    }
-}
-
-bool TList::isEnd()
-{
-    if(it->getNext() == NULL)
-        return true;
-    return false;
 }
 
 bool TList::isEmpty()
 {
-    return (n == 0);
+    return (first == NULL);
 }
 
 void TList::print()
@@ -109,5 +106,3 @@ void TList::print()
         p = p->getNext();
     }
 }
-
-//FALTA FAZER UM MÉTODO QUE APAGUE !!!!
