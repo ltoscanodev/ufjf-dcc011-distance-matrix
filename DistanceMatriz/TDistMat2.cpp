@@ -20,7 +20,7 @@ TDistMat2::TDistMat2(int ordem)
 */
 TDistMat2::~TDistMat2()
 {
-    for(int k = 0; k < n; k++)
+    for(int k = 0; k < nVet; k++)
     {
         TList *p = mat[k];
         delete p;
@@ -105,3 +105,38 @@ void TDistMat2::print()
     }
 }
 
+/*
+    Descrição: Implementação do método save do TAD, salva a matriz em um arquivo
+*/
+bool TDistMat2::save(string fileName)
+{
+    ofstream matFile;
+    string filePath = "Matrizes/" + fileName + ".txt";
+    matFile.open(filePath.c_str());;
+
+    if(!matFile.is_open())
+        cout << endl << "[ Erro: Nao foi possivel criar o arquivo da matriz ]" << endl;
+    else
+    {
+        matFile << n << endl;
+
+        for(int i = 1; i < n; i++)
+        {
+            for(int j = 0; j < i; j++)
+            {
+                matFile << getDist(i, j);
+
+                if(j < (i - 1))
+                    matFile << " ";
+            }
+
+            matFile << endl;
+        }
+
+        matFile.close();
+
+        return true;
+    }
+
+    return false;
+}

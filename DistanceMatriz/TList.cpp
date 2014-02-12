@@ -22,14 +22,6 @@ TList::~TList()
     }
 }
 
-float TList::getDist()
-{
-    if(it != NULL)
-        return it->getInfo();
-
-    return -1;
-}
-
 float TList::getDist(int j)
 {
     TNo *aux = first;

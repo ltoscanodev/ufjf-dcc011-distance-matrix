@@ -10,7 +10,6 @@ class TList
         TNo *it; // Utilizado na busca por um elemento
 
         bool searchDist(int index); // Busca por um índice j da matriz
-        float getDist(); // Consulta a distância do nó it
         void setDist(float dist); // Atribui uma distância ao nó it
     public:
         TList(); // Construtor do TAD

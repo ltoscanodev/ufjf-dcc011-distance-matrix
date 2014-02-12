@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1392071101 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\main.cpp
+1392243057 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\main.cpp
 	"TDistMat.h"
 	"TDistMat2.h"
 	<iostream>
@@ -9,27 +9,31 @@
 	<string>
 	<limits>
 
-1391975849 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.h
+1392240146 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.h
 	<iostream>
+	<fstream>
+	<string>
 
-1392033926 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.cpp
+1392244639 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.cpp
 	"TDistMat.h"
 
 1390058489 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat.h
 
-1392069750 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat2.cpp
+1392245311 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat2.cpp
 	"TDistMat2.h"
 
-1392070271 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat2.h
+1392240255 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tdistmat2.h
 	"TList.h"
 	<iostream>
+	<fstream>
+	<string>
 
-1392070282 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tlist.h
+1392239010 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tlist.h
 	"TNo.h"
 
 1392069991 c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tno.h
 
-1391975224 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tlist.cpp
+1392239002 source:c:\users\luis augusto\desktop\ufjf\ensino\semestres\2º semestre - 2013\estrutura de dados\trabalhos\distancematriz\distancematriz\tlist.cpp
 	<iostream>
 	"TList.h"
 

@@ -39,6 +39,32 @@ void waitToContinue()
 }
 
 /*
+    Descrição: Método genérico que exibe na tela uma mensagem e espera uma entrada
+*/
+template <typename T> T getInput(string desc)
+{
+    T result;
+
+    while(true)
+    {
+        cout << desc;
+        cin >> result;
+
+        if (!cin)
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << endl << "[ Erro: Entrada invalida ]" << endl;
+            waitToContinue();
+        }
+        else
+            break;
+    }
+
+    return result;
+}
+
+/*
     Descrição: Método genérico que lê um arquivo dos dados da matriz
 */
 template <class T> T* readMat(string fileName)
@@ -103,32 +129,6 @@ template <class T> T* readMat(string fileName)
 }
 
 /*
-    Descrição: Método genérico que exibe na tela uma mensagem e espera uma entrada
-*/
-template <typename T> T getInput(string desc)
-{
-    T result;
-
-    while(true)
-    {
-        cout << desc;
-        cin >> result;
-
-        if (!cin)
-        {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << endl << "[ Erro: Entrada invalida ]" << endl;
-            waitToContinue();
-        }
-        else
-            break;
-    }
-
-    return result;
-}
-
-/*
     Descrição: Método genérico para consultar um item da matriz
 */
 template <class T> void consultMat(T *distMat)
@@ -176,6 +176,17 @@ template <class T> void printMat(T *p)
     waitToContinue();
 }
 
+template <class T> void saveMat(T *p)
+{
+    clearScreen();
+    string fileName = getInput<string>("Insira o nome do arquivo para salvar [Ex: matriz]: ");
+
+    if(p->save(fileName))
+        cout << endl << "Matriz salva!" << endl;
+
+    waitToContinue();
+}
+
 /*
     Descrição: Método genérico que verifica a escolha do menu
 */
@@ -191,6 +202,9 @@ template <class T> void parseMenu(int menuOp, T *p)
             break;
         case 3:
             changeMat<T>(p);
+            break;
+        case 4:
+            saveMat<T>(p);
             break;
         case 0:
             delete p;
@@ -243,6 +257,7 @@ int showMenu()
     cout << "[1] - Imprimir matriz" << endl;
     cout << "[2] - Consultar item da matriz" << endl;
     cout << "[3] - Alterar item da matriz" << endl;
+    cout << "[4] - Salvar a matriz" << endl;
     cout << "[0] - Sair" << endl;
 
     return getInput<int>("Opcao: ");

@@ -4,6 +4,8 @@
 #include "TList.h"
 
 #include <iostream>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -22,6 +24,7 @@ class TDistMat2
         float getDist(int i, int j); // Consulta a distância na posição i e j
         bool setDist(int i, int j, float dist); // Atribui uma distância à posição i e j
         void print(); // Imprime a matriz
+        bool save(string fileName); // Salva a matriz em um arquivo
         ~TDistMat2(); // Destrutor do TAD
 };
 
